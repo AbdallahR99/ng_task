@@ -1,0 +1,151 @@
+<div>
+  <div class="py-3 bg-primary-100">
+    <div class="container">
+      <span class="p-input-icon-left w-full">
+        <i class="pi pi-search"></i>
+        <input type="search" pInputText ngModel #searchBy="ngModel" name="searchBy"
+          class="w-full" />
+      </span>
+    </div>
+
+  </div>
+</div>
+<div class="py-3"></div>
+<div class="container">
+
+  <div class="grid grid-nogutter">
+    <div class="md:col-4 col-12">
+      <ng-container *ngTemplateOutlet="userCard"></ng-container>
+    </div>
+    <div class="md:col-8 col-12">
+      <div class="px-2">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<ng-template #userCard>
+
+  <div class="bg-white p-2 border-round-2xl ">
+    <div class="max-w-21rem m-auto flex flex-column justify-content-center align-items-center">
+      <div class="py-3"></div>
+      <p-avatar [image]="user.avatarUrl" size="xlarge" shape="circle"></p-avatar>
+      <div class="py-2"></div>
+      <span class="text-xl">{{ user.name }}</span>
+      <span class="text-xl">{{ user.nameEnglish }}</span>
+      <div class="py-2"></div>
+      <span [ngSwitch]="user.residentStatus">
+      <ng-template [ngSwitchCase]="residentStatus.Active">
+        <ng-template [ngTemplateOutlet]="statusBadge" [ngTemplateOutletContext]="{
+          color: 'bg-green-700',
+          icon: 'pi-check-circle',
+          text: 'Active'
+        }"></ng-template>
+
+      </ng-template>
+      <ng-template [ngSwitchCase]="residentStatus.Inactive">
+
+      </ng-template>
+      <ng-template ngSwitchDefault>
+
+      </ng-template>
+      </span>
+      <div class="py-1"></div>
+      <p-divider class="w-full"></p-divider>
+      <div class="py-1"></div>
+      <div class="flex flex-row justify-content-between align-items-center w-full">
+        <span class="text-sm text-gray-600">Overall Score</span>
+        <span class="text-sm flex align-items-center">
+          <p-rating [(ngModel)]="user.overallScore" [readonly]="true" [cancel]="false" class="line-height-1"></p-rating>
+          <div class="px-1"></div>
+
+         <div>
+          <div class="bg-primary-100 px-2 border-round">
+            <span class="text-primary text-sm">{{ user.overallScore }}</span>
+          </div>
+         </div>
+        </span>
+      </div>
+      <div class="py-1"></div>
+      <div class="flex flex-row justify-content-between align-items-center w-full">
+        <span class="text-sm text-gray-600">Overall Value</span>
+        <span class="flex font-bold align-items-center">
+        {{user.currency}}  {{ user.overallValue | number }}
+        </span>
+      </div>
+      <p-divider class="w-full"></p-divider>
+      <div class="py-1"></div>
+      <div class="flex align-self-start flex-column w-full">
+        <div class="flex flex-column">
+          <span class="text-sm text-gray-600">EID</span>
+          <span class="text-sm font-bold">
+               {{ user.eid }}
+          </span>
+        </div>
+      <div class="py-1"></div>
+
+        <div class="flex w-full flex-wrap gap-2">
+          <div class="flex flex-column">
+            <span class="text-sm text-gray-600">Date Of Birth</span>
+            <span class="text-sm font-bold">
+                 {{ user.birthOfDate | date: 'dd/MM/yyyy' }}
+            </span>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="flex flex-column">
+            <span class="text-sm text-gray-600">Gender</span>
+            <span class="text-sm font-bold">
+                {{genders[user.gender]}}
+            </span>
+          </div>
+          <div class="flex-auto"></div>
+
+        </div>
+        <div class="py-1"></div>
+        <div class="flex flex-column">
+          <span class="text-sm text-gray-600">Nationality</span>
+          <span class="text-sm font-bold">
+               {{ user.nationalityName }}
+          </span>
+        </div>
+        <div class="py-1"></div>
+        <div class="flex flex-column">
+          <span class="text-sm text-gray-600">Email</span>
+          <span class="text-sm font-bold">
+               {{ user.email }}
+          </span>
+        </div>
+        <div class="py-1"></div>
+
+        <div class="flex flex-column">
+          <span class="text-sm text-gray-600">Mobile Number</span>
+          <span class="text-sm font-bold">
+               {{ user.phone }}
+          </span>
+        </div>
+      </div>
+      <div class="py-2"></div>
+      <p-button type="button" class="w-full block"
+      styleClass="w-full p-button-text border-gray-300" label="View More Details">
+
+    </p-button>
+      <div class="py-1"></div>
+
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #statusBadge let-color="color" let-icon="icon" let-text="text" let-textColor="textColor">
+    <span class="flex align-items-center px-2 border-round-xl p-1 px-4" [ngClass]="[color, (textColor || 'text-white')]">
+      <i class="pi icon" [ngClass]="icon"></i>
+      <div class="px-2"></div>
+      <span>{{ text }}</span>
+    </span>
+
+</ng-template>
+

@@ -1,0 +1,19 @@
+@import '_index.scss';
+
+
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+*:focus {
+  outline: none !important;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 15px;
+  margin: auto;
+}

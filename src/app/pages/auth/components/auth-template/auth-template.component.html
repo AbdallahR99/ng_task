@@ -1,0 +1,20 @@
+<div class="grid grid-nogutter">
+  <div class="md:col-6 flex bg-white flex-auto h-screen">
+    <div class="container m-auto">
+      <div class="flex align-items-center">
+        <p-avatar class="text-primary" icon="pi pi-users" size="xlarge" shape="circle"></p-avatar>
+        <div class="px-2"></div>
+        <span class="text-gray-900 text-4xl">
+          People Profiling
+        </span>
+      </div>
+      <div class="p-3"></div>
+      <div class="lg:w-28rem">
+        <ng-content select="form"></ng-content>
+
+      </div>
+    </div>
+  </div>
+  <div [ngStyle]="{'--bg-image': 'url('+backgroundImage+')'}" class="md:col-6 hidden md:flex h-screen auth-bg">
+  </div>
+</div>

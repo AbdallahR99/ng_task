@@ -1,0 +1,31 @@
+<div class="grid grid-nogutter">
+  <div class="md:col-6 col-12" *ngFor="let status of user.userStatus">
+      <div class="bg-white p-3 border-round-2xl m-2 cursor-pointer" [routerLink]="['./', status.name]">
+        <div class="flex flex-wrap align-items-center">
+          <div >
+            <div class="flex border-circle bg-primary-100 p-2 w-2rem h-2rem justify-content-center align-items-center">
+              <img [src]="status.icon" alt="">
+            </div>
+          </div>
+        <div class="px-2"></div>
+        <span class="text-xl">{{ status.name }}</span>
+        <div class="flex-auto"></div>
+        <i class="pi pi-angle-right text-primary"></i>
+        </div>
+        <div class="py-2"></div>
+        <div class="flex flex-wrap gap-2">
+          <ng-container *ngFor="let item of status.items">
+            <div class="border border-gray-300 p-2 border-round-xl border-1">
+              <span class="text-sm text-gray-700">{{ item }}</span>
+            </div>
+
+          </ng-container>
+
+        </div>
+
+      </div>
+
+
+  </div>
+
+</div>
